@@ -12,11 +12,11 @@ Use console.log() to write the proper output to the command line.
 const fizzbuzz = () => {
   for (let i = 1; i <= 100; i += 1) {
     if (i % 5 === 0 && i % 3 === 0) {
-      console.log(i, "fizzbuzz");
+      console.log("fizzbuzz");
     } else if (i % 3 === 0) {
-      console.log(i, "fizz");
+      console.log("fizz");
     } else if (i % 5 === 0) {
-      console.log(i, "buzz");
+      console.log("buzz");
     } else console.log(i);
   }
 };
