@@ -1,19 +1,40 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-    <title>03 - Form</title>
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-    />
-    <script defer src="03-form.js"></script>
-  </head>
-  <body class="bg-dark">
-    <form class="bg-light border rounded w-50 mx-auto mt-5 p-3">
-      <h1 class="mt-2 mb-4">Contact Form</h1>
-    </form>
-  </body>
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>03 - Form</title>
+  <link
+    rel="stylesheet"
+    href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+  />
+  <script defer src="03-form.js"></script>
+</head>
+<body class="bg-dark">
+<form onsubmit="formSubmit()" class="bg-light border rounded w-50 mx-auto mt-5 p-3">
+  <h1 class="mt-2">Contact Form</h1>
+  <div class="form-group">
+    <label class=" mt-4" for="name">Name *</label>
+    <input type="text" class="form-control mt-2" id="name"/>
+    <label class=" mt-4" for="email">Email *</label>
+    <input type="email" class="form-control mt-2" id="email"/>
+    <label class=" mt-4" for="feedback">Submit your message</label>
+    <textarea class="form-control mt-2" id="feedback" ></textarea>
+    <input type="checkbox" class="mt-2" id="newsletter"/>
+    <label class=" mt-4" for="newsletter">Sign up for the newsletter</label>
+    <div class="mt-4 row d-flex justify-content-around">
+        <div class="col-6 ">
+          <button type="submit" class="btn w-100  btn-primary"> Submit </button>
+
+        </div>
+        <div class="col-6">
+          <button onclick="removeErrorNodes()" type="reset" class="btn w-100 btn-secondary"> Reset </button>
+
+        </div>
+    </div>
+
+  </div>
+</form>
+</body>
 </html>

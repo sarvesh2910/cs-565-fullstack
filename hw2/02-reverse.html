@@ -12,10 +12,11 @@
   </head>
   <body class="bg-dark">
     <main class="bg-light border rounded w-50 mx-auto mt-5 p-3">
+      <form onsubmit=reverseFunction()>
       <h1 class="mt-2 mb-4">Reverse</h1>
-      <div class="form-group w-50">
+      <div class="form-group">
         <label for="input">Enter an 8-digit number: </label>
-        <input type="number" class="form-control" id="input" required />
+        <input min="0" type="number" class="w-50 form-control mt-4" id="input" required />
       </div>
       <div class="form-group mt-4">
         <input
@@ -25,6 +26,7 @@
           id="reverse"
         />
       </div>
+      </form>
     </main>
   </body>
 </html>
