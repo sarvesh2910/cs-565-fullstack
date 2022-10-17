@@ -50,7 +50,9 @@ const formValidations = (name, email) => {
   }
   return true;
 };
+// eslint-disable-next-line no-unused-vars
 const formSubmit = () => {
+  // eslint-disable-next-line no-restricted-globals
   event.preventDefault();
   const name = document.getElementById("name").value;
   const email = document.getElementById("email").value;

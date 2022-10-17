@@ -2,7 +2,9 @@
 
 const removeElement = (el) => el && el.parentNode.removeChild(el);
 
+// eslint-disable-next-line no-unused-vars
 const reverseFunction = () => {
+  // eslint-disable-next-line no-restricted-globals
   event.preventDefault();
 
   removeElement(document.getElementById("textElement"));

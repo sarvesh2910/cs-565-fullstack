@@ -2,8 +2,11 @@
 
 // eslint-disable-next-line consistent-return
 const calculateChange = (input) => {
-  if (input <= 0) return "input should be positive";
-  if (input > 10) return "Error: the number is too large";
+  let answer = `$${input} ==>`;
+  if (input <= 0) return `${answer} input should be positive`;
+  if (input > 10) return `${answer} Error: the number is too large`;
+
+  const coins = [25, 10, 5, 1];
 
   // eslint-disable-next-line prefer-const
   let [dollars, remaining] = input
@@ -11,21 +14,14 @@ const calculateChange = (input) => {
     .split(".")
     .map((i) => parseInt(i, 10));
 
-  let answer = "";
-
-  const quarters = Math.floor(remaining / 25);
-  remaining -= quarters * 25;
-
-  const dime = Math.floor(remaining / 10);
-  remaining -= dime * 10;
-
-  const nickel = Math.floor(remaining / 5);
-  remaining -= nickel * 5;
-
-  const pennies = Math.floor(remaining);
+  const [quarters, dime, nickel, pennies] = coins.map((coin) => {
+    const temp = Math.floor(remaining / coin);
+    remaining -= temp * coin;
+    return temp;
+  });
 
   if (dollars) {
-    answer = `${answer} ${dollars} dollar${dollars > 2 ? "s" : ""},`;
+    answer = `${answer} ${dollars} dollar${dollars >= 2 ? "s" : ""},`;
   }
   if (quarters) {
     answer = `${answer} ${quarters} quarter${quarters >= 2 ? "s" : ""},`;
@@ -40,7 +36,7 @@ const calculateChange = (input) => {
     answer = `${answer} ${pennies} penn${pennies >= 2 ? "ies" : "y"}`;
   }
 
-  console.log(answer);
+  return answer;
 };
 
 // Sample Test Cases
