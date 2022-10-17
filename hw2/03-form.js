@@ -69,5 +69,6 @@ const formSubmit = () => {
         : "No, thank you."
     );
     console.groupEnd();
+    alert("Submitted");
   }
 };

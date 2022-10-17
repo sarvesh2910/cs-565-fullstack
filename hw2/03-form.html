@@ -12,7 +12,8 @@
   <script defer src="03-form.js"></script>
 </head>
 <body class="bg-dark">
-<form onsubmit="formSubmit()" class="bg-light border rounded w-50 mx-auto mt-5 p-3">
+<div class="container">
+<form onsubmit="formSubmit()" class="bg-light border rounded col-sm-10 col-lg-6 mx-auto mt-5 p-3">
   <h1 class="mt-2">Contact Form</h1>
   <div class="form-group">
     <label class=" mt-4" for="name">Name *</label>
@@ -26,15 +27,14 @@
     <div class="mt-4 row d-flex justify-content-around">
         <div class="col-6 ">
           <button type="submit" class="btn w-100  btn-primary"> Submit </button>
-
         </div>
         <div class="col-6">
           <button onclick="removeErrorNodes()" type="reset" class="btn w-100 btn-secondary"> Reset </button>
-
         </div>
     </div>
 
   </div>
 </form>
+  <div class="container-fluid">
 </body>
 </html>

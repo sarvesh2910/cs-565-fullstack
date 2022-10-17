@@ -1,26 +1,28 @@
-/** Exercise 04 - API **/
+/* Exercise 04 - API */
 
 const url = "https://restcountries.com/v3.1/all";
 
 // Add your code here
 const getData = () => {
-  let list = document.getElementById("results");
+  const list = document.getElementById("results");
   fetch(url)
     .then((data) => data.json())
     .then((data) => {
       list.innerHTML = "";
       const allCountries = data;
-      console.log(data);
-
-      allCountries.map((item, index) => {
-        let node = document.createElement("p");
-        let text = `${index + 1}. ${item.name.common} - ${parseInt(item.population).toLocaleString()}`;
+      allCountries.forEach((item, index) => {
+        const node = document.createElement("p");
+        const text = `${index + 1}. ${item.name.common} - ${parseInt(
+          item.population,
+          10
+        ).toLocaleString()}`;
         node.innerText = text;
         list.appendChild(node);
       });
-    }).catch(e => {
-    console.log("error", e);
-    list.innerHTML = "error occured";
-  });
+    })
+    .catch((e) => {
+      console.log("error", e);
+      list.innerHTML = "Error occured";
+    });
 };
 getData(url);
