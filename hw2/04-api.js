@@ -10,9 +10,9 @@ const getData = () => {
     .then((data) => {
       list.innerHTML = "";
       const allCountries = data;
-      allCountries.forEach((item, index) => {
-        const node = document.createElement("p");
-        const text = `${index + 1}. ${item.name.common} - ${parseInt(
+      allCountries.forEach((item) => {
+        const node = document.createElement("li");
+        const text = `${item.name.common} - ${parseInt(
           item.population,
           10
         ).toLocaleString()}`;
