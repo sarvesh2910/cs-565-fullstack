@@ -1,6 +1,6 @@
 /* Exercise 04 - API */
 
-const url = "https://restcountries.com/v3.1/all";
+const url = "https://restcountries.com/v2/all";
 
 // Add your code here
 const getData = () => {
@@ -12,7 +12,7 @@ const getData = () => {
       const allCountries = data;
       allCountries.forEach((item) => {
         const node = document.createElement("li");
-        const text = `${item.name.common} - ${parseInt(
+        const text = `${item.name} - ${parseInt(
           item.population,
           10
         ).toLocaleString()}`;
