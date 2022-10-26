@@ -1,42 +1,42 @@
 /* Exercise 01 - Coins */
 
-// eslint-disable-next-line consistent-return
 const calculateChange = (input) => {
-  let answer = `$${input} ==>`;
+  const answer = `$${input} ==>`;
+
+  const coinValue = [100, 25, 10, 5, 1];
+  const coinNames = ["dollar", "quarter", "dime", "nickel", "penn"];
+
   if (input <= 0) return `${answer} input should be positive`;
   if (input > 10) return `${answer} Error: the number is too large`;
 
-  const coins = [25, 10, 5, 1];
+  let input100 = input * 100;
 
-  // eslint-disable-next-line prefer-const
-  let [dollars, remaining] = input
-    .toString()
-    .split(".")
-    .map((i) => parseInt(i, 10));
-
-  const [quarters, dime, nickel, pennies] = coins.map((coin) => {
-    const temp = Math.floor(remaining / coin);
-    remaining -= temp * coin;
-    return temp;
+  const coinChange = coinValue.map((coins) => {
+    const quotient = Math.floor(input100 / coins);
+    input100 -= quotient * coins;
+    return quotient;
   });
 
-  if (dollars) {
-    answer = `${answer} ${dollars} dollar${dollars >= 2 ? "s" : ""},`;
-  }
-  if (quarters) {
-    answer = `${answer} ${quarters} quarter${quarters >= 2 ? "s" : ""},`;
-  }
-  if (dime) {
-    answer = `${answer} ${dime} dime${dime >= 2 ? "s" : ""},`;
-  }
-  if (nickel) {
-    answer = `${answer} ${nickel} nickel${nickel >= 2 ? "s" : ""},`;
-  }
-  if (pennies) {
-    answer = `${answer} ${pennies} penn${pennies >= 2 ? "ies" : "y"}`;
-  }
+  const tempArray = [];
+  coinChange.forEach((item, index) => {
+    if (item) {
+      if (index === 4) {
+        // penny
+        tempArray.push(
+          `${item} ${
+            item >= 2 ? `${coinNames[index]}ies` : `${coinNames[index]}y`
+          }`
+        );
+      } else {
+        // rest coins
+        tempArray.push(
+          `${item} ${item > 1 ? `${coinNames[index]}s` : coinNames[index]}`
+        );
+      }
+    }
+  });
 
-  return answer;
+  return `${answer} ${tempArray.join(", ")}`;
 };
 
 // Sample Test Cases
