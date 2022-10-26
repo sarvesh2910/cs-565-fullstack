@@ -1,9 +1,9 @@
 /* Exercise 01 - Coins */
 
 const calculateChange = (input) => {
-  const answer = `$${input} ==>`;
+  let answer = `$${input} ==>`;
 
-  const coinValue = [100, 25, 10, 5, 1];
+  const coinValues = [100, 25, 10, 5, 1];
   const coinNames = ["dollar", "quarter", "dime", "nickel", "penn"];
 
   if (input <= 0) return `${answer} input should be positive`;
@@ -11,9 +11,9 @@ const calculateChange = (input) => {
 
   let input100 = input * 100;
 
-  const coinChange = coinValue.map((coins) => {
-    const quotient = Math.floor(input100 / coins);
-    input100 -= quotient * coins;
+  const coinChange = coinValues.map((coinValue) => {
+    const quotient = Math.floor(input100 / coinValue);
+    input100 -= quotient * coinValue;
     return quotient;
   });
 
@@ -28,7 +28,7 @@ const calculateChange = (input) => {
           }`
         );
       } else {
-        // rest coins
+        // other coins
         tempArray.push(
           `${item} ${item > 1 ? `${coinNames[index]}s` : coinNames[index]}`
         );
@@ -36,7 +36,8 @@ const calculateChange = (input) => {
     }
   });
 
-  return `${answer} ${tempArray.join(", ")}`;
+  answer = `${answer} ${tempArray.join(", ")}`;
+  return answer;
 };
 
 // Sample Test Cases
