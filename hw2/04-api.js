@@ -7,9 +7,9 @@ const getData = () => {
   const list = document.getElementById("results");
   fetch(url)
     .then((data) => data.json())
-    .then((data) => {
+    .then((allCountries) => {
       list.innerHTML = "";
-      const allCountries = data;
+      const fragment = new DocumentFragment();
       allCountries.forEach((item) => {
         const node = document.createElement("li");
         const text = `${item.name} - ${parseInt(
@@ -17,8 +17,9 @@ const getData = () => {
           10
         ).toLocaleString()}`;
         node.innerText = text;
-        list.appendChild(node);
+        fragment.appendChild(node);
       });
+      list.appendChild(fragment);
     })
     .catch((e) => {
       console.log("error", e);
