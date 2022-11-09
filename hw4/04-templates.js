@@ -14,6 +14,8 @@ const url = "https://restcountries.com/v3.1/all";
 let data = [];
 let countries = [], populous = [], regions = [];
 let isPopulationDataCalculated = false;
+let isRegionDataCalculated = false;
+let regionObject = {};
 
 app.get("/", async (req, res) => {
   // render pug template for the index.html file
@@ -36,9 +38,11 @@ app.get("/", async (req, res) => {
 app.get("/capitals", (req, res) => {
   // map the output array to create an array with country names and capitals
   // check for empty data in the output array
-  countries = data
-    .map((country, i) => `${country.name.common}  ${country.capital && country.capital[0] ? (`- ${country.capital[0]}`) : ""}`)
-    .sort()
+  if (countries.length === 0) {
+    countries = data
+      .map((country, i) => `${country.name.common}  ${country.capital && country.capital[0] ? (`- ${country.capital[0]}`) : ""}`)
+      .sort();
+  }
 
   res.render("page", {
     heading: "Countries and Capitals",
@@ -63,7 +67,6 @@ app.get("/populous", (req, res) => {
     isPopulationDataCalculated = true;
   }
 
-
   res.render("page", {
     heading: "Most Populous Countries",
     results: populous
@@ -73,16 +76,19 @@ app.get("/populous", (req, res) => {
 app.get("/regions", (req, res) => {
   // reduce the output array in a resulting object that will feature the numbers of countries in each region
   // disregard empty data from the output array
-  let regionObject = {};
-  data.forEach(country => {
-    if (regionObject[country.region]) {
-      regionObject[country.region]++;
-    } else {
-      regionObject[[country.region]] = 1;
+
+  if (!isRegionDataCalculated) {
+    data.forEach(country => {
+      if (regionObject[country.region]) {
+        regionObject[country.region]++;
+      } else {
+        regionObject[[country.region]] = 1;
+      }
+    });
+    for (let [key, value] of Object.entries(regionObject)) {
+      regions.push(`${key} - ${value}`);
     }
-  });
-  for (let [key, value] of Object.entries(regionObject)) {
-    regions.push(`${key} - ${value}`);
+    isRegionDataCalculated = true;
   }
 
   res.render("page", {

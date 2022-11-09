@@ -1,7 +1,8 @@
 {
   "dependencies": {
+    "cookie-parser": "^1.4.6",
     "express": "^4.17.1",
-    "pug": "^3.0.2",
-    "node-fetch": "2.6.7"
+    "node-fetch": "2.6.7",
+    "pug": "^3.0.2"
   }
 }
